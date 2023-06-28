@@ -4,7 +4,6 @@ import { ethers } from "ethers";
 
 import forwardABI from "./abi/MinimalForwarder.json";
 import nftABI from "./abi/testNFT.json";
-import { signMetaTxRequest } from "../../back/src/signer/signer";
 
 import "./App.css";
 
@@ -90,7 +89,7 @@ function App() {
     const pinataCID = await pinataUpload();
     const url = "ipfs://" + pinataCID;
     console.log(url);
-    const address = String(process.env.REACT_APP_TESTNFT_ADDRESS);
+    const to = String(process.env.REACT_APP_TESTNFT_ADDRESS);
 
     const userProvider = new ethers.BrowserProvider(window.ethereum);
     const signer = await userProvider.getSigner();
@@ -101,20 +100,17 @@ function App() {
       1000,
       url,
     ]);
-    console.log(data);
-    const to = address;
     const request = await buildRequest(forwarder, { to, from, data });
     const toSign = await buildTypedData(forwarder, request);
 
-    const result = await userProvider.send("eth_signTypedData_v4", [
+    const signature = await userProvider.send("eth_signTypedData_v4", [
       from,
       JSON.stringify(toSign),
     ]);
     console.log(JSON.stringify(toSign));
-
     const mintingResult = await fetch(webhookURI, {
       method: "POST",
-      body: JSON.stringify({ result, request }),
+      body: JSON.stringify({ signature, request }),
       headers: { "Content-Type": "application/json" },
     });
     console.log(mintingResult);
@@ -138,7 +134,6 @@ function App() {
         }}></input>
       <button
         onClick={() => {
-          pinataUpload();
           minting();
         }}>
         nft miniting

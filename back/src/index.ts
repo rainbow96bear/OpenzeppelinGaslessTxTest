@@ -10,8 +10,6 @@ import pinataSDK from "@pinata/sdk";
 import multer from "multer";
 import fs from "fs";
 
-import { signMetaTxRequest } from "./signer/signer";
-
 dotenv.config();
 
 const storage = multer.diskStorage({
@@ -95,14 +93,7 @@ app.post("/pinataUpload", upload.single("file"), async (req, res) => {
     res.end();
   }
 });
-app.post("/getSignTypedData", async (req, res) => {
-  console.log("하이");
-  console.log("signer : ", req.body.signer);
-  console.log("from : ", req.body.from);
-  // console.log("toSgin : ", req.body.toSgin);
-  // const result = await signTypedData(to, from, data);
-  res.send("안녕");
-});
+
 app.use(
   session({
     resave: false,

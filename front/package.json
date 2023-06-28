@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ethersproject/providers": "^5.7.2",
     "@pinata/sdk": "^2.1.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -12,7 +13,10 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "assert": "^2.0.0",
+    "aws-sdk": "^2.1406.0",
     "axios": "^1.4.0",
+    "defender-autotask-client": "^1.44.0",
+    "defender-relay-client": "^1.44.0",
     "eth-sig-util": "^3.0.1",
     "ethers": "^6.6.1",
     "fast-text-encoding": "^1.0.6",

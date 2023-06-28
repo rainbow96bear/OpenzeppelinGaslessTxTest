@@ -1,0 +1,13 @@
+{
+  "relayer": {
+    "relayerId": "9823ed47-9fbb-442e-b192-564ceb2f5aa6",
+    "name": "testRelayCreate",
+    "address": "0x92bdec2c2aba5aa3f9e4253d96ea864000676c53",
+    "network": "Mumbai",
+    "createdAt": "2023-06-28T13:10:13.603Z",
+    "paused": false,
+    "policies": {},
+    "minBalance": "100000000000000000",
+    "pendingTxCost": "0"
+  }
+}
