@@ -1,8 +1,7 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 import "@nomicfoundation/hardhat-verify";
-const POLYGONSCAN_API_KEY =
-  process.env.POLYGONSCAN_API_KEY || "Your polygonscan API key";
+const POLYGONSCAN_API_KEY = "MSJD85MYTEXFMB61GMTD9CUI637Q622XEH";
 const config: HardhatUserConfig = {
   defaultNetwork: "polygonMumbai",
   networks: {
