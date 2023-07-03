@@ -3,7 +3,7 @@ const {
   DefenderRelaySigner,
   DefenderRelayProvider,
 } = require("defender-relay-client/lib/ethers");
-const ForwarderAbi = require("../../src/abi/MinimalForwarder.json");
+const { ForwarderAbi } = require("../../src/abi/index.js");
 
 const ForwarderAddress = "0x4943523cE751691C67B78Dffb502E319778a82BC";
 
@@ -30,7 +30,7 @@ function handler(event) {
   const signer = new DefenderRelaySigner(credentials, provider, {
     speed: "fast",
   });
-  const forwarder = new Contract(ForwarderAddress, ForwarderAbi, signer);
+  const forwarder = new Contract(ForwarderAddress, ForwarderAbi.abi, signer);
 
   // Relay transaction!
   return relay(forwarder, request, signature)

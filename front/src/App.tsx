@@ -12,20 +12,20 @@ function App() {
   const [nftName, setNftName] = useState<any>();
   const [forwarder, setForwarder] = useState<any>();
   const [nftContract, setNftContract] = useState<any>();
-  const webhookURI = String(process.env.REACT_APP_WEBHOOK_URI);
+  const webhookURI = process.env.REACT_APP_WEBHOOK_URI || "";
   const provider = new ethers.JsonRpcProvider(
     process.env.REACT_APP_ALCHEMY_URI
   );
   const testNFTInstance = () => {
     const address = String(process.env.REACT_APP_TESTNFT_ADDRESS);
-    const testNFT = new ethers.Contract(address, nftABI, provider);
+    const testNFT = new ethers.Contract(address, nftABI.abi, provider);
     setNftContract(testNFT);
   };
   const forwardInstance = () => {
     const address = String(process.env.REACT_APP_FORWARDER_ADDRESS);
     const forwarderContract = new ethers.Contract(
       address,
-      forwardABI,
+      forwardABI.abi,
       provider
     );
     setForwarder(forwarderContract);
