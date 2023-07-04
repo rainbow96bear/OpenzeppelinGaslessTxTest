@@ -6,10 +6,8 @@ async function main() {
   const {
     relayer: { relayerId },
   } = JSON.parse(readFileSync("./relay.json"));
-  const apiKey = "7JgJw9MiV9TLvkvmRrUz3JPav9gt7yfY";
-  const apiSecret =
-    "41pYN4S8LkeNuPbGzh97ruueBAoKKj5Pi5G6jv2YBxckncvygMxRxjXmTXw7Dv9Y";
-
+  const apiKey = process.env.TEAM_API_KEY;
+  const apiSecret = process.env.TEAM_API_SECRET_KEY;
   const client = new AutotaskClient({ apiKey, apiSecret });
   const { autotaskId } = await client.create({
     name: "testAutotasks",

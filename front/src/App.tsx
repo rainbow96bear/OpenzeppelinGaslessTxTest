@@ -8,12 +8,9 @@ import nftABI from "./abi/testNFT.json";
 import "./App.css";
 
 function App() {
-  const Relayer_API_KEY: string = "KJX91VNruJ5M92b2guJTxZ3VGxmdg6V6";
-  const Relayer_API_Secret_KEY: string =
-    "5a1aiWCLtEX7QNeRPfzeAkxcMdT1ghU8wY1EvongqVndeWwDPyihCjoEGQJEeLvt";
   const credentials = {
-    apiKey: Relayer_API_KEY,
-    apiSecret: Relayer_API_Secret_KEY,
+    apiKey: process.env.REACT_APP_RELAYER_API_KEY,
+    apiSecret: process.env.REACT_APP_RELAYER_API_SECRET,
   };
   const [imgFile, setImgFile] = useState<any>();
   const [nftName, setNftName] = useState<any>();

@@ -8,13 +8,14 @@ import "hardhat/console.sol";
 
 contract testNFT is ERC721URIStorage, ERC2771Context {
     address public minter;
-
+    uint256 tokenID = 0;
     constructor(MinimalForwarder forwarder) ERC721("Test NFT", "TESTNFT") ERC2771Context(address(forwarder)) {minter = msg.sender;}
 
-    function mint(address to, uint256 tokenId, string memory uri) external {
+    function mint(address to, string memory uri) external {
         // require(msg.sender == minter, "Minting is restricted");
-        _safeMint(to, tokenId);
-        _setTokenURI(tokenId, uri);
+        _safeMint(to, tokenID);
+        _setTokenURI(tokenID, uri);
+        tokenID++;
     }
 
     function _msgSender() internal view override(ERC2771Context, Context) returns (address sender) {
