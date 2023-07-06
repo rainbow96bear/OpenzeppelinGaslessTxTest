@@ -1,5 +1,9 @@
 # OpenzeppelinGaslessTxTest
 
+## 설명 블로그
+
+https://rainbow96bear.tistory.com/entry/BlockChain-Openzeppelin%EC%9D%98-defender-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0
+
 ## front
 
 1. useEffect를 통하여 forwarder와 nft contract를 설정

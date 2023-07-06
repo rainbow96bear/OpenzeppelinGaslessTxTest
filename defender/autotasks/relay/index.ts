@@ -1,9 +1,9 @@
-const { Contract } = require("ethers");
-const {
+import { Contract } from "ethers";
+import {
   DefenderRelaySigner,
   DefenderRelayProvider,
-} = require("defender-relay-client/lib/ethers");
-const { ForwarderAbi } = require("../../src/abi/index.js");
+} from "defender-relay-client/lib/ethers";
+import ForwarderAbi from "../../abi/testForwarder.json";
 
 const ForwarderAddress = "0x4943523cE751691C67B78Dffb502E319778a82BC";
 
@@ -14,37 +14,33 @@ async function relay(forwarder, request, signature) {
 
   // Send meta-tx through relayer to the forwarder contract
   const gasLimit = (parseInt(request.gas) + 50000).toString();
-  return await forwarder.execute(request, signature, { gasLimit });
+  return forwarder.execute(request, signature, { gasLimit });
 }
 
-function handler(event) {
+async function handler(event) {
   const { request, signature } = event;
   console.log("Relaying", request);
 
   // Initialize Relayer provider and signer, and forwarder contract
-  const credentials = {
+  const credentials: any = {
     apiKey: process.env.REACT_APP_RELAYER_API_KEY,
     apiSecret: process.env.REACT_APP_RELAYER_API_SECRET,
   };
   const provider = new DefenderRelayProvider(credentials);
-  const signer = new DefenderRelaySigner(credentials, provider, {
+  const signer: any = new DefenderRelaySigner(credentials, provider, {
     speed: "fast",
   });
   const forwarder = new Contract(ForwarderAddress, ForwarderAbi.abi, signer);
 
   // Relay transaction!
-  return relay(forwarder, request, signature)
-    .then((tx) => {
-      console.log(`Sent meta-tx: ${tx.hash}`);
-      return { txHash: tx.hash };
-    })
-    .catch((error) => {
-      console.error(error);
-      throw error;
-    });
+  try {
+    const tx = await relay(forwarder, request, signature);
+    console.log(`Sent meta-tx: ${tx.hash}`);
+    return { txHash: tx.hash };
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
-module.exports = {
-  handler,
-  relay,
-};
+export default handler;
