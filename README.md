@@ -1,10 +1,11 @@
 # OpenzeppelinGaslessTxTest
 
-## 설명 블로그
+## Openzeppelin 사용 방법 정리
 
 https://rainbow96bear.tistory.com/entry/BlockChain-Openzeppelin%EC%9D%98-defender-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0
 
-## front
+## App 설명
+### front
 
 1. useEffect를 통하여 forwarder와 nft contract를 설정
 
@@ -18,11 +19,11 @@ https://rainbow96bear.tistory.com/entry/BlockChain-Openzeppelin%EC%9D%98-defende
    - buildTypedData 메서드를 이용하여 sign을 위한 Data 생성
    - 생성한 Data를 통하여 전자 서명을 얻어 webhook으로 전달
 
-## back
+### back
 
 1. multer를 이용하여 pinata에 nft를 위한 json 저장
 
-## defender
+### defender
 
 1. relayer 생성 script
 
